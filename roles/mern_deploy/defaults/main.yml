@@ -1,0 +1,14 @@
+---
+# defaults file for mern_deploy
+node_repo_setup_url: "https://rpm.nodesource.com/setup_20.x"
+app_repo: "https://github.com/riteshpatidar08/Society-management-System.git"
+app_dir: "/var/www/Society-management-System"
+domain_name: "arihant.codes"
+domain_www: "www.arihant.codes"
+mongodb_uri: "mongodb://127.0.0.1:27017/society_db"
+jwt_expires_in: "7d"
+smtp_host: "smtp.gmail.com"
+smtp_port: 587
+smtp_user: "sih60639@gmail.com"
+smtp_password: "vcoy rond thrq kjdq"
+client_url: "https://{{ domain_name }}"

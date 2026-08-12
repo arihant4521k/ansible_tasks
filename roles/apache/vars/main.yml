@@ -1,0 +1,12 @@
+---
+# vars file for apache
+rhel_pkg: httpd
+ubuntu_pkg: apache2
+rhel_service: httpd.service
+ubuntu_service: apache2
+service: http
+custom_conf_rhel: /etc/httpd/conf.d
+custom_conf_ubuntu: /etc/apache2/sites-available
+custom_conf_enabled: /etc/apache2/sites-enabled
+dc: /var/www/html
+email: localhost@localhost

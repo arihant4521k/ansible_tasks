@@ -1,0 +1,26 @@
+#node1
+#node2
+#node3
+
+172.31.15.183
+
+# Grouping
+[dev]
+node1
+node2
+node3
+node4
+
+[prod]
+node2
+node1
+
+[rhel]
+node1
+node2
+node3
+
+# Grouping of Groups
+[webserver:children]
+prod
+dev

@@ -1,0 +1,20 @@
+---
+ - name : play-1
+   hosts : dev
+   tasks :
+     - name : task-1
+       file :
+          path : /tmp/data
+          state : directory
+
+     - name : task-2
+       file :
+         path : /tmp/data/techno.txt
+         state : touch
+         mode : '0660'
+
+     - name : task-3
+       file :
+         src: '/tmp/data/techno.txt'
+         dest: '~/grras.txt'
+         state : hard

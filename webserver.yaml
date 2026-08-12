@@ -1,0 +1,42 @@
+---
+- name: Congifure Web-Server
+  hosts: dev
+  vars_files: ./webserver_var.yaml
+  tasks:
+    - name: install {{ pkg }}
+      yum:
+        name: "{{ pkg }}"
+        state: present
+      register: httpd_info
+
+    - name: info using register variable
+      debug:
+        var: httpd_info
+  
+    - name: Manage {{ service }}
+      service:
+        name: "{{ service }}"
+        state: started
+        enabled: yes
+
+    - name: Open {{ port }}
+      firewalld:
+        port: "{{ port }}"
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name : copy conf file
+      copy:
+        src: ./myweb.conf
+        dest: /etc/httpd/conf.d/
+
+    - name: copy index.html
+      copy:
+        src: ./index.html
+        dest: /var/www/html
+
+    - name: restart service
+      service:
+        name: "{{ service }}"
+        state: restarted

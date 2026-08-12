@@ -1,0 +1,24 @@
+---
+ - name : this is first play
+   hosts : dev
+   tasks :
+     - name : install vsftpd
+       yum :
+         name :
+            - vsftpd
+            - bzip2
+         state : present
+
+     - name : create archive of /etc
+       archive :
+         path : /etc
+         dest : /tmp/data/etc.tar.bz
+         format : bz2
+
+ - name : this is second play
+   hosts : node1
+   tasks :
+     - name : install git
+       yum :
+         name : git
+         state : present

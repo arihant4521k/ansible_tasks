@@ -1,0 +1,45 @@
+---
+- name: install nginx
+  dnf:
+    name: nginx
+    state: present
+
+- name: enable and start
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: nginx server block
+  template:
+    src: society.conf.j2
+    dest: /etc/nginx/conf.d/society.conf
+  notify: reload nginx
+
+- name: fix ownership
+  file:
+    path: "{{ app_dir }}/client/dist"
+    owner: nginx
+    group: nginx
+    recurse: yes
+
+- name: fix dir permission
+  file:
+    path: "{{ item }}"
+    mode: '0755'
+  loop:
+    - /var/www
+    - "{{ app_dir }}"
+    - "{{ app_dir }}/client"
+    - "{{ app_dir }}/client/dist"
+
+- name: set selinx
+  community.general.sefcontext:
+    target: "{{ app_dir }}/client/dist(/.*)?"
+    setype: httpd_sys_content_t
+    state: present
+  register: sefcontext_result
+
+- name: Apply selinux context permanent save
+  command: restorecon -Rv "{{ app_dir }}/client/dist"
+  when: sefcontext_result.changed

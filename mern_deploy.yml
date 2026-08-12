@@ -1,0 +1,7 @@
+---
+- name: play1
+  hosts: 172.31.15.183
+  become: yes
+  gather_facts: yes
+  roles:
+    - mern_deploy

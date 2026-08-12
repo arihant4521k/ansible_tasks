@@ -1,0 +1,44 @@
+---
+- name: configure frontend env
+  template:
+    src: frontend.env.production.j2
+    dest: "{{ app_dir }}/client/.env"
+
+- name: fic hardcoded in App.jsx
+  replace:
+    path: "{{ app_dir }}/client/src/App.jsx"
+    regexp: "io\\('http://localhost:3000'\\)"
+    replace: "io(import.meta.env.VITE_API_URL_ROOT)"
+
+- name: fic hardcoded in Visitors.jsx
+  replace:
+    path: "{{ app_dir }}/client/src/pages/Visitors.jsx"
+    regexp: "io\\('http://localhost:3000'\\)"
+    replace: "io(import.meta.env.VITE_API_URL_ROOT)"
+
+- name: fix case sensitive Auth Slice import path
+  shell: >
+    grep -rl "redux/slice/AuthSlice" {{ app_dir }}/client/src | xargs -r sed -i 's/redux\/slice\/AuthSlice/redux\/slice\/authSlice/g'
+  register: case_fix_result
+  changed_when: "case_fix_result.stdout != ''"
+
+- name: install frontend npm depend.....
+  command: npm install
+  args:
+    chdir: "{{ app_dir }}/client"
+
+- name: build
+  command: npm run build
+  args:
+    chdir: "{{ app_dir }}/client"
+  register: frontend_build_result
+
+- name: confirm dist folder created
+  stat:
+    path: "{{ app_dir }}/client/dist/index.html"
+  register: dist_check
+
+- name: show build confimation
+  debug:
+    msg: "Fontend build success"
+  when: dist_check.stat.exists

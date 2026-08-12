@@ -1,0 +1,13 @@
+<VirtualHost {{ ansible_default_ipv4.address }}:80>
+    ServerName {{ ansible_default_ipv4.address }}
+    ServerAdmin {{ email }}
+
+    DocumentRoot {{ dc }}
+
+    <Directory {{ dc }}>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+</VirtualHost>

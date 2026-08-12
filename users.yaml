@@ -1,0 +1,22 @@
+---
+- name: play
+  hosts: prod
+  vars_files: 
+    - ./user_list.yaml
+    - ./secrets.yaml
+  tasks:
+    - name : create user
+      user:
+        name: "{{item.name}}"
+        state: present
+        password: "{{ eng | password_hash('sha512') }}"
+      loop: "{{users}}"
+      when:  item.job == "developer" and ansible_facts.hostname == "node1"
+
+    - name : create user
+      user:
+        name: "{{item.name}}"
+        state: present
+        password: "{{ mgr | password_hash('sha512') }}"
+      loop: "{{users}}"
+      when: item.job == "manager" and  ansible_facts.hostname  == "node2"

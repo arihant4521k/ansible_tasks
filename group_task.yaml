@@ -1,0 +1,13 @@
+- name: task-1
+  group:
+     name: abc
+     state: present
+- name: task-2
+  group:
+     name: efg
+     state: present
+
+- name: task-3
+  group:
+     name: hij
+     state: present

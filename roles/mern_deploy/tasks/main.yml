@@ -1,0 +1,25 @@
+---
+# tasks file for mern_deploy
+- name: PartA Base Server config
+  import_tasks: part_a.yml
+  tags: part_A
+
+- name: PartB Backend Deployment
+  import_tasks: part_b.yml
+  tags: part_B
+
+- name: PartC Frontend Build
+  import_tasks: part_c.yml
+  tags: part_C
+
+- name: PartD Nginx Reverse Proxy
+  import_tasks: part_d.yml
+  tags: part_D
+
+- name: PartE Firewalld and SElinux for proxy layer
+  import_tasks: part_e.yml
+  tags: part_E
+
+- name: PartF ssl
+  import_tasks: part_f.yml
+  tags: part_F

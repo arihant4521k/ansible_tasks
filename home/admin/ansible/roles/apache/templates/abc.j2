@@ -1,0 +1,6 @@
+<VirtualHost {{ ansible_default_ipv4.address}}:80>
+Servername {{ ansible_default_ipv4.address }}
+DocumentRoot {{ dc }}
+ServerAdmin {{ email }}
+</VirtualHost>
+

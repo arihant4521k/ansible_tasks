@@ -1,0 +1,7 @@
+---
+- name: print info 
+  hosts: dev
+  vars_files: 
+    - ./vars.yaml
+  tasks:
+    - name:

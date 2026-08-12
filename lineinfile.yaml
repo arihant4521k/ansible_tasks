@@ -1,0 +1,17 @@
+---
+ - name : play1
+   hosts : dev
+   tasks :
+
+     - name : task1
+       lineinfile :
+         path : /tmp/data/abc.txt
+         line : Hello World
+         create : yes
+
+     - name : task2
+       import_tasks: ./group_task.yaml
+
+
+ - name : play2
+   import_playbook : ./multi_play.yaml

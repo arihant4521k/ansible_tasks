@@ -1,0 +1,63 @@
+---
+# tasks file for apache
+  - name: install {{ rhel_pkg }}
+    yum:
+      name: "{{rhel_pkg}}"
+      state: present
+    when : ansible_os_family == "RedHat"
+    register: redhat_install
+
+  - name: install {{ ubuntu_pkg }}
+    apt:
+      name: "{{ubuntu_pkg}}"
+      state: present
+    when : ansible_os_family == "Debian"
+    register: debian_install
+  
+  - name: manage service
+    service:
+      name: "{{rhel_service}}"
+      state: started
+      enabled: yes
+    when : ansible_os_family == "RedHat" and redhat_install.changed
+
+  - name: manage service
+    service:
+      name: "{{rhel_service}}"
+      state: started
+      enabled: yes
+    when : ansible_os_family == "Debian" and ubuntu_install.changed
+
+  - name : open ports
+    firewalld:
+      service: "{{service}}"
+      state: enabled
+      permanent: true
+      immediate: true
+    when : ansible_os_family == "RedHat"
+
+  - name: copy conf file
+    template:
+      src: abc.j2
+      dest: {{custom_conf_rhel}}/abc.conf
+    when : ansible_os_family == "RedHat"
+    notify: httpd restarted
+
+  - name: copy conf file
+    template:
+      src: xyz.j2
+      dest: {{custom_conf_ubuntu}}/xyz.conf
+     when : ansible_os_family == "Debian"
+     notify: apache restarted
+
+  - name: enable virtual hosting
+    file:
+      src: {{custom_conf_ubunut}}/xyz.conf
+      dest: {{custom_conf_enabled}}/xyz.conf
+      state: link
+    when : ansible_os_family == "Debian"
+
+  - name : copy index file
+    copy:
+      src: ./index.html
+      dest: "{{dc}}"

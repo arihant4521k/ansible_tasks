@@ -1,0 +1,38 @@
+---
+- name: configure AUTOFS Server
+  hosts: node2
+  tasks:
+    - name: install nfs-utils
+      yum:
+        name: 
+          - nfs-utils
+          - autofs
+        state: present
+
+    - name: start and enable nfs service
+      service:
+        name: autofs.service
+        state: started
+        enabled: yes
+
+    - name: create directory
+      file:
+        path: /data
+        state: directory
+        mode: "777"
+        
+    - name: create enfiguration file
+      lineinfile:
+        path: /etc/auto.master.d/techno.autofs
+        create: yes
+        line: /-  /etc/auto.misc
+
+    - name: modify /etc/auto.misc
+      lineinfile:
+        path: /etc/auto.misc
+        line: /data -rw,soft,intr 172.31.8.204:/nfs_share
+
+    - name: restart service autofs command
+      service:
+          name: autofs.service
+          state: restarted

@@ -1,0 +1,42 @@
+---
+- name: Download EPEL 9 GPG key
+  ansible.builtin.get_url:
+    url: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
+    dest: /tmp/RPM-GPG-KEY-EPEL-9
+    mode: '0644'
+
+- name: Import EPEL 9 GPG key via rpm --import
+  ansible.builtin.command:
+    cmd: rpm --import /tmp/RPM-GPG-KEY-EPEL-9
+
+- name: Install EPEL 9 repository
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    state: present
+
+- name: install certbot and nginx plugin
+  dnf:
+    name:
+      - certbot
+      - python3-certbot-nginx
+    state: present
+
+- name: check SSL certificate
+  stat:
+    path: "/etc/letsencrypt/live/{{ domain_name }}/fullchain.pem"
+  register: cert_check
+
+- name: issue ssl certificate
+  command: >
+    certbot --nginx -d {{ domain_name }} -d {{ domain_www }} --non-interactive --agree-tos -m {{ smtp_user }} --redirect
+  when: not cert_check.stat.exists
+
+- name: confirm certbot
+  command: systemctl is-active certbot-renew.timer
+  register: renew_timer_status
+  changed_when: false
+  failed_when: false
+
+- name: show renew timer
+  debug:
+    msg: "certbot-renew.timer status: {{ renew_timer_status.stdout }}"

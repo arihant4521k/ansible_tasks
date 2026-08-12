@@ -1,0 +1,83 @@
+---
+- name: update system and packages
+  block:
+    - name: update pkg
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: install base pkg
+      dnf:
+        name:
+          - git
+          - curl
+          - wget
+          - firewalld
+        state: present
+
+    - name: enable and start firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+  rescue:
+    - name: base prep failed
+      debug:
+        msg: "base server setup failed"
+  
+  always:
+    - name:
+      debug:
+        msg: "base server prep step finished might be success or fail"
+
+- name: download node source setup acript
+  get_url:
+    url: "{{ node_repo_setup_url }}"
+    dest: /tmp/nodesource_setup.sh
+    mode: '0755'
+
+- name: run node source setup script
+  command: bash /tmp/nodesource_setup.sh
+  register: node_setup_result
+  changed_when: "'Repository configured' in node_setup_result.stdout or node_setup_result.rc == 0"
+
+- name: Install Node.js
+  dnf:
+    name: nodejs
+    state: present
+
+- name: confmr node js version
+  command: node --version
+  register: node_version
+  changed_when: false
+
+- name: print node js version
+  debug:
+    msg: "installed nodejs version : {{ node_version.stdout}}"
+
+- name: add mongodb repo
+  template:
+    src: mongodb.repo.j2
+    dest: /etc/yum.repos.d/mongodb-org-7.0.repo
+
+- name: install mongodb
+  dnf:
+    name: mongodb-org
+    state: present
+
+- name: start and enable mongod
+  service:
+    name: mongod
+    state: started
+    enabled: yes
+
+- name: check mongodb service status
+  command: systemctl is-active mongod
+  register: mongo_status
+  changed_when: false
+
+- name: show mongodb status
+  debug:
+    msg: "MongoDb Status: {{ mongo_status.stdout }}"
+  when: mongo_status.stdout == "active"

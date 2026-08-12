@@ -1,0 +1,12 @@
+<VirtualHost {{ ansible_default_ipv4.address }}:80> 
+ServerName   {{ ansible_default_ipv4.address }}
+DocumentRoot "{{dest}}/wordpress"
+ServerAdmin  admin@localhost
+
+<Directory "{{dest}}/wordpress"> 
+Options Indexes FollowSymLinks 
+AllowOverride all 
+Require all granted 
+</Directory>
+
+</VirtualHost>
