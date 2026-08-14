@@ -1,0 +1,9 @@
+---
+ - name: changing the ssh port
+   hosts: all
+   tasks:
+     - name: using template module
+       template:
+         src: ssh.j2
+         dest: /etc/ssh/sshd_config
+         backup: yes

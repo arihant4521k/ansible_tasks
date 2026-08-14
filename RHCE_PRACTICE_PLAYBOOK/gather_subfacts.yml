@@ -1,0 +1,8 @@
+---
+- name: collect subfacts
+  hosts: all
+  tasks:
+    - name: collect hardware facts
+      setup:
+        gather_subset:
+          - hardware

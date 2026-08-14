@@ -1,0 +1,16 @@
+---
+ - name: using file module
+   hosts: all
+   tasks:
+     - name: creating a file
+       file:
+         path: /arihant
+         owner: admin
+         group: wheel
+         mode: '0600'
+         state: touch
+
+     - name: changing setype
+       file:
+         path: /arihant
+         setype: samba_share_t

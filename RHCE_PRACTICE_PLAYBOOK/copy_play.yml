@@ -1,0 +1,8 @@
+---
+- name: using the copy module
+  hosts: all
+  tasks:
+    - name: copy the file to remote machine
+      copy:
+        src: text.txt
+        dest: /tmp/text.txt

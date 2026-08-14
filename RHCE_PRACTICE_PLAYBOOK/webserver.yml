@@ -1,0 +1,5 @@
+---
+- name: creating a webserver
+  hosts: all
+  roles:
+    - webserver

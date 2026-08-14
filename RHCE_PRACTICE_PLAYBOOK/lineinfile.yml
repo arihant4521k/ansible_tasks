@@ -1,0 +1,9 @@
+---
+ - name: using lineinfile
+   hosts: all
+   tasks:
+     - name: add a line in a file
+       lineinfile:
+         path: /arihant
+         line: 'This iS My New ADDedd File '
+         state: present

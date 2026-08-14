@@ -1,0 +1,13 @@
+---
+- name: demonstrate the in keyword
+  hosts: all
+  vars:
+    supported_distros:
+      - RedHat
+      - Fedora
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+      when: ansible_facts['distribution'] in supported_distros

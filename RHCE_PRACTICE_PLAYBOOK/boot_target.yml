@@ -1,0 +1,16 @@
+---
+- name: change defaulttarget
+  hosts: all
+  vars:
+    systemd_target: "multi-user.target"
+  tasks:
+    - name: get current systemd target
+      command:
+        cmd: systemctl get-default
+      changed_when: false
+      register: target
+
+    - name: set default target
+      command:
+        cmd: systemctl set-default {{ systemd_target}}
+      when: systemd_target not in target['stdout']

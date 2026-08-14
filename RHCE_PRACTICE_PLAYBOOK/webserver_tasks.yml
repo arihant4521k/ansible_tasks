@@ -1,0 +1,5 @@
+---
+ - name: install webserver
+   hosts: all
+   tasks:
+     - import_tasks: import_tasks.yml

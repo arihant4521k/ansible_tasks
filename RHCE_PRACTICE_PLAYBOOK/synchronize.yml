@@ -1,0 +1,8 @@
+---
+ - name: using synchronize module
+   hosts: all
+   tasks:
+     - name: local to remote transfer
+       synchronize:
+         src: abcde.txt
+         dest: /abcde.txt

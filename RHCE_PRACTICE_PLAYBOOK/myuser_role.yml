@@ -1,0 +1,7 @@
+---
+- name: using myuser role
+  hosts: all
+  vars: 
+    - myusers: abccc
+  roles:
+    - users

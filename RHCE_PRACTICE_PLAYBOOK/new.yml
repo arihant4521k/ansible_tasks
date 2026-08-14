@@ -1,0 +1,30 @@
+---
+- name: Create a user grrrroup and directory
+  hosts: all
+  tasks:
+    - name : create auser
+      user:
+        name: udaipur
+        state: present
+        uid: 2727
+
+    - name: create a group
+      group:
+        name: windows
+        state: present
+
+    - name: create a directory
+      file:
+        path: /udaipur
+        state: directory
+        owner: admin
+        group: windows
+        mode: '0777'
+
+- name: copy a file 
+  hosts: dev
+  tasks:
+    - name: copy from src
+      copy:
+        src: abc.txt
+        dest: /abc.txt

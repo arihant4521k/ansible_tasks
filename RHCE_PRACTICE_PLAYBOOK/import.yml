@@ -1,0 +1,6 @@
+---
+ - name: learning the import
+   hosts: all
+   tasks:
+     - name: import tasks
+       import_tasks: task1.yml

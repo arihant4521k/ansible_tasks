@@ -1,0 +1,27 @@
+---
+- name: creating partition
+  hosts: all
+  tasks:
+    - name: creating parttionnnn on sda
+      parted:
+        device: /dev/sda
+        number: 1
+        state: present
+        part_end: 1.5GiB
+        
+    - name: format the partition
+      filesystem:
+        fstype: ext4
+        dev: /dev/sda1
+
+    - name: createeeeeeee a dir
+      file:
+        path: /partition
+        state: directory
+
+    - name: permanent mount
+      mount:
+        path: /partition
+        src: /dev/sda1
+        state: mounted
+        fstype: ext4

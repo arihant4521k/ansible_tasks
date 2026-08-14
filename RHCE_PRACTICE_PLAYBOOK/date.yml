@@ -1,0 +1,16 @@
+---
+- name: capturee hostname
+  hosts: all
+  tasks:
+    - name: get hostname
+      command: date
+      register: mydate
+
+    - name: print captured hostname
+      debug:
+        msg: "Todays date  is {{ mydate.stdout }}"
+
+    - name: print using var.
+      debug:
+        var: mydate.stdout
+

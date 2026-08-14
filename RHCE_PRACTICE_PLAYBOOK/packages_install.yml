@@ -1,0 +1,23 @@
+---
+- name: checking all packages installation
+  hosts: all
+  tasks:
+    - name: uninstall httpd
+      yum:
+        name: httpd
+        state: absent
+
+    - name: update all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: install group "development tools"
+      yum:
+        name: '@Development Tools'
+        state: present
+
+    - name: remove group "development tools"
+      yum:
+        name: '@Development Tools'
+        state: absent

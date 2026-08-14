@@ -1,0 +1,20 @@
+---
+- name: create a block
+  hosts: all
+  tasks:
+    - name: configure block for playbook
+      block:
+        - name: install httpd
+          yum:
+             name: httpd
+             state: present
+
+        - name: start service httpd
+          service:
+               name: httpd
+               state: started
+
+        - name: enable httpd
+          service:
+              name: httpd
+              enabled: yes

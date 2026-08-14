@@ -1,0 +1,8 @@
+---
+ - name: deeelete a file
+   hosts: all
+   tasks:
+     - name: deleting /arihant
+       file:
+         path: /arihant
+         state: absent

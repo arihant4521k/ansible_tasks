@@ -1,0 +1,16 @@
+---
+ - name: variable practice
+   hosts: all
+   vars_files:
+      var.yml
+   tasks:
+     - name: create user mohit
+       user:
+         name: "{{usr}}"
+         state: present
+
+     - name : create directory
+       file:
+         path: "{{ dir  }}"
+         state: directory
+

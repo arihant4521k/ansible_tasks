@@ -1,0 +1,12 @@
+---
+ - name: using the stat module
+   hosts: all
+   tasks:
+     - name: use stat for /etc/passwd
+       stat:
+         path: /etc/passwd
+       register: results
+
+     - name: displaaaay the stat variable
+       debug:
+         var: results

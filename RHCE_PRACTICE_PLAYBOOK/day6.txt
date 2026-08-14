@@ -1,0 +1,205 @@
+    1  userdel arihant
+    2  ls /home
+    3  rm -rf /home/
+    4  ls /home
+    5  mkdir  /home
+    6  ip a s
+    7  userdel manan 
+    8  lsblk
+    9  vi /etc/yum.repos.d/aa.repo
+   10  yum --help
+   11  yum repolist all
+   12  yum install ansible* -y
+   13  yum repoinfo
+   14  ansible --version
+   15  vim /etc/ansible/hosts 
+   16  ansible all --list-hosts
+   17  ansible 192.168.12.11 --list-hosts
+   18  ansible 122.168.1.1 --liiiiiist-hosts
+   19  ansible 122.168.1.1 --list-hosts
+   20  vim /etc/ansible/hosts 
+   21  ansible dehli --list-hosts
+   22  ansible delhi --list-hosts
+   23  ansible mumbai --list-hosts
+   24  ansible all --list-hosts
+   25  ansible 122.168.1.1 --list-hosts
+   26  vim /etc/an
+   27  vim /etc/ansible/hosts 
+   28  ansible ungrouped --list-all
+   29  ansible ungrouped --list-hosts
+   30  ansible pune --list-hosts
+   31  firewalld
+   32  systemctl status firewalld
+   33  ansible all --list-hosts
+   34  10.12.23.[10:13] --> give range of ips
+   35  workstation[a:j].server.com --> gives range of hosts name
+   36  mkdir rcat
+   37  vim ./rcat/inventory
+   38  cddd rcat/
+   39  vim ansible.cfg
+   40  ansible all --list-hosts -i rcat/inventory 
+   41  cd rcat/
+   42  vim ansible.cfg
+   43  history > abc.txt
+   44  cat abc.txt 
+   45  man ansible
+   46  vim ./rcat/inventory
+   47  ls
+   48  pwd
+   49  cat cd
+   50  cd
+   51  pwd
+   52  ls
+   53  cd rcat/
+   54  ls
+   55  cat inventory 
+   56  ansible --list-hosts dev
+   57  ansible --list-hosts all
+   58  cat ansible.cfg 
+   59  ansible --version
+   60  cd
+   61  ansible --version
+   62  cat /etc/ansible/ansible.cfg
+   63  vim /etc/ansible/ansible.cfg
+   64  init 0
+   65  lsblk
+   66  cd rcat/
+   67  cat inventory 
+   68  vim ansible.cfg
+   69  ansible -m ping all
+   70  ssh admin@192.168.180.129
+   71  yum install -y sshpass
+   72  vim /etc/yum.repos.d/aa.repo 
+   73  yum install -y sshpass
+   74  ansible all -m ping
+   75  ansible all -m file -a "path=test state=directory"
+   76  ansible dev -m command -a "ls -l "
+   77  ansible prod -m command -a "ls -l"
+   78  ansible all -m useer "name=koibhi state=present"
+   79  ansible all -m user -a "name=koibhi state=present"
+   80  ansible all -m user -a "name=koibhi state=present" -b
+   81  ls
+   82  history > abc.txt 
+   83  cat ansible.cfg > ansible.cfg.txt
+   84  ansible -m command -a "init 0" -b
+   85  ansible -m command -a "init 0" -b all
+   86  history
+   87  ansible -m ping all
+   88  cd rcat/
+   89  ansible -m ping all
+   90  cat ansible.cfg
+   91  pwd
+   92  vim /etc/ansible/ansible.cfg 
+   93  vim ansible.cfg
+   94  ansible -m ping all
+   95  vim ansible.cfg
+   96  clear
+   97  ssh-keygen
+   98  clear
+   99  cat inventory 
+  100  ssh-copy-id admin@192.168.180.129
+  101  ssh-copy-id admin@192.168.180.128
+  102  vim ansible.cfg
+  103  ansible -m ping all
+  104  vim ansible.cfg
+  105  ansible all -m group -a "name=rain state=present"
+  106  ansible all -m file -a "path=/linux owner=admin state=directory"
+  107  ansible -m command -a "ls -l /"
+  108  ansible -m command -a "ls -l /" all
+  109  clear
+  110  vim user.yml
+  111  ansible-playbook --syntax-check user.yml 
+  112  vim user.yml
+  113  ansible-playbook user.yml 
+  114  ansible -m command -a "id abc" all
+  115  ls
+  116  history > abc.txt 
+  117  cat ansible.cfg >> abc.txt 
+  118  cat abc.txt  > Day3.txt
+  119  ansible -m command -a "init 0"
+  120  ansible -m command -a "init 0" all
+  121  init 0
+  122  ansible all -m command -a  "lsblk"
+  123  ansible -m command -a "init 0"
+  124  ansible -m command -a "init 0" all
+  125  init 0
+  126  ansible -m ping all
+  127  cd rcat/
+  128  ansible -m ping all
+  129  hostnamectl
+  130  yum update
+  131  ansible user.yml 
+  132  cleeear
+  133  vim new.yml
+  134  ansible-playbook new.yml 
+  135  vim new.yml
+  136  ansible user.yml 
+  137  ansible-playbook new.yml 
+  138  clear
+  139  ansible all -m command "id udaipur"
+  140  ansible all -m command -a "id udaipur"
+  141  ansible all -m command -a "getent  group windows"
+  142  ansible all -m command -a "ls -ld /udaipur"
+  143  vim new.yml 
+  144  ansible-playbook new.yml 
+  145  ansible all -m command -a "ls -ld /udaipur"
+  146  vim new.yml 
+  147  ansible-doc -l
+  148  ansible-doc copy
+  149  ansible-doc template
+  150  clear
+  151  vim new.yml 
+  152  cat abc.txt 
+  153  ansible-playbook new.yml 
+  154  clear
+  155  vim new.yml 
+  156  ansible-playbook new.yml 
+  157  ansible -m command "cat /abc.txt" dev
+  158  ansible -m command -a "cat  /abc.txt" dev
+  159  vim mount.yml
+  160  ansible-playbook  mount.yml 
+  161  vim mount.yml
+  162  ansible-doc mount
+  163  ansible-galaxy collection install ansible.posix
+  164  ansible-playbook  mount.yml 
+  165  vim mount.yml
+  166  ansible-playbook  mount.yml 
+  167  vim mount.yml
+  168  ansible-playbook  mount.yml 
+  169  tuned-adm list
+  170  tuned-adm profile accelerator-performance 
+  171  ansible -m ping all
+  172  cd rcat/
+  173  ansible -m ping all
+  174  ansible-doc yum_repository
+  175  clear
+  176  vim repo.yml
+  177  ansible -m command -a "lsblk" all
+  178  ansible-playbook repo.yml --syntax-check
+  179  cat repo.yml 
+  180  vim repo.yml 
+  181  ansible-playbook repo.yml 
+  182  ansible -m command -a "yum repolist all" all
+  183  cat repo.yml 
+  184  vim webcontent.yml
+  185  ansible-playbook webcontent.yml 
+  186  ansible all -m command -a "rpm -q httpd"
+  187  ansible  all -m command -a "systemctl status httpd"
+  188  vim webcontent.yml 
+  189  ansible-playbook webcontent.yml 
+  190  curl
+  191  vim myuser.yml
+  192  ansible-playbook  myuser.yml 
+  193  ansible all -m command -a "id mohiiit" 
+  194  ansible all -m command -a "id mohit" 
+  195  ansible all -m command -a "ls -l /mohit"
+  196  vim myuser.yml 
+  197  ansible-playbook myuser.yml 
+  198  ansible all -m command -a "id rohit"
+  199  ansible all -m command -a "ls -ld /rohit"
+  200  ip a s
+  201  ansible all -m command -a "init 0
+"
+  202  history > day.txt
+  203  rm -rf day.txt 
+  204  history > day6.txt

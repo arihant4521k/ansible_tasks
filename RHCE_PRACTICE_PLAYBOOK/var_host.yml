@@ -1,0 +1,14 @@
+---
+ - name: variable practice
+   hosts: all
+   tasks:
+     - name: create user mohit
+       user:
+         name: "{{usr}}"
+         state: present
+
+     - name : create directory
+       file:
+         path: "{{ dir  }}"
+         state: directory
+

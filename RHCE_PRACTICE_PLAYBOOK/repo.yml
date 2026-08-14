@@ -1,0 +1,19 @@
+---
+ - name: play1
+   hosts: all
+   tasks:
+     - name: repo config
+       yum_repository:
+         name: AppStream
+         description: App Stream repo
+         baseurl: file:///mnt/AppStream
+         gpgcheck: no
+         enabled: yes
+     - name: repo config
+       yum_repository:
+         name: BaseOS
+         description: Base OS repo
+         baseurl: file:///mnt/BaseOS
+         gpgcheck: no
+         enabled: yes
+

@@ -1,0 +1,18 @@
+---
+- name: disable dnf makecache
+  hosts: all
+  tasks:
+    - name: makecache disable
+      systemd:
+        name: dnf-makecache.timer
+        state: stopped
+        enabled: no
+
+- name: manage service
+  hosts: all
+  tasks:
+    - name: start enable httpd
+      service:
+        name: httpd
+        state: reloaded
+        enabled: yes

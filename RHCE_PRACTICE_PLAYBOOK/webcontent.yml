@@ -1,0 +1,21 @@
+---
+ - name: configure web server
+   hosts: all
+   tasks:
+     - name: install apache
+       dnf:
+         name: httpd
+         state: present
+
+     - name: restart and enabled service
+       service:
+         name: httpd
+         state: started
+         enabled: yes
+
+     - name: add firewall
+       firewalld:
+         service: http
+         state: enabled
+         permanent: true
+         immediate: true

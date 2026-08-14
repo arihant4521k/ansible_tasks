@@ -1,0 +1,7 @@
+---
+- name: reboot syssstem
+  hosts: all
+  tasks:
+    - name: reboot a slow machine
+      reboot:
+        reboot_timeout: 0

@@ -1,0 +1,29 @@
+---
+- name: creating a user
+  hosts: all
+  tasks:
+    - name: user module
+      user:
+        name: devops
+        shell: /bin/bash
+        groups: wheel
+        append: true
+        comment: devops
+        uid: 2026
+        state: present
+
+    - name: creating a group
+      group:
+        name: audit
+        gid: 2023
+        state: present
+
+    - name: provide sudo access
+      lineinfile:
+        path: /etc/sudoers.d/devops
+        state: present
+        create: true
+        mode: '0440'
+        line: "devops ALL=(ALL) NOPASWD:ALL"
+
+    

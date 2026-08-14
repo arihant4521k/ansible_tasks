@@ -1,0 +1,5 @@
+[dev]
+192.168.180.129 usr=darshan dir=/darshan
+
+[prod]
+192.168.180.128 usr=palak dir=/palak

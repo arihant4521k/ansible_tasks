@@ -1,0 +1,11 @@
+---
+ - name: usingg block in file
+   hosts: all
+   tasks:
+     - name: add a block in a file
+       blockinfile:
+         path: /arihant
+         block: |
+           this is my undefined
+           line or code
+         state: present

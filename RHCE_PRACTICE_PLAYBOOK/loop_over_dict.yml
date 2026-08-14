@@ -1,0 +1,14 @@
+---
+ - name: example of loop over dictionary
+   hosts: all
+   tasks:
+     - name: create a user and group
+       user:
+         name: "{{ item['name'] }}"
+         state: present
+         groups: "{{ item['groups'] }}"
+       loop:
+         - name: jane
+           groups: wheel
+         - name: joe
+           groups: root

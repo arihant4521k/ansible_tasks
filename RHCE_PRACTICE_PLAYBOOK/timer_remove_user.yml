@@ -1,0 +1,10 @@
+---
+- name: removeing a user
+  hosts: all
+  tasks:
+    - name: remove devops
+      at:
+        command: userdel -r devops
+        count: 20
+        units: minutes
+        unique: yes

@@ -1,0 +1,17 @@
+---
+- name: capturee hostname
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: get hostname
+      command: hostname
+      register: myhost
+
+    - name: print captured hostname
+      debug:
+        msg: "My hostname is {{ myhost.stdout }}"
+
+    - name: print using var.
+      debug:
+        var: myhost.stdout
+

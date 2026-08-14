@@ -1,0 +1,9 @@
+---
+- name: appyling the conditions
+  hosts: all
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+      when: (ansible_facts.distribution == 'RedHat' and ansible_facts['distribution_major_version'] == '10' ) or (ansible_facts.distribution == 'Fedora' and ansible_facts['distribution_major_version'] == '34')

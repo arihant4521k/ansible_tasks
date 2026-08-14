@@ -1,0 +1,12 @@
+---
+- name: using cron job
+  hosts: all
+  tasks:
+    - name: schedule cron job
+      cron:
+        name: creating a logger
+        user: devops
+        job: echo "hello"
+        minute: 05
+        hour: 18
+        weekday: 5

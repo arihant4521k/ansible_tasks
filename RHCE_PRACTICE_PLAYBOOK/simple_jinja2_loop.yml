@@ -1,0 +1,15 @@
+---
+ - name: using loop with jinja2
+   hosts: all
+   vars:
+     students:
+       - pawan
+       - kushal
+       - tanmay
+       - arihant
+       - manan
+   tasks:
+     - name: print students name
+       debug:
+         msg: "{{ item  }}"
+       loop: "{{ students  }}"

@@ -1,0 +1,8 @@
+---
+ - name: using template module
+   hosts: all
+   tasks:
+     - name: templTE module
+       template:
+         src: ip.j2
+         dest: /ip

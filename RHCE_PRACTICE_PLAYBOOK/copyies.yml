@@ -1,0 +1,8 @@
+---
+ - name: using copy module
+   hosts: all
+   tasks:
+     - name: copy module
+       copy:
+         src: ip.txt
+         dest: /ip.txt

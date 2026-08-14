@@ -1,0 +1,9 @@
+---
+ - name: Create auser
+   hosts: all
+   tasks:
+     - name: User Creation
+       user:
+            name: abc
+            state: present
+...

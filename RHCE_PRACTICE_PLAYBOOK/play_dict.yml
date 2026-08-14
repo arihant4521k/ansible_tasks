@@ -1,0 +1,18 @@
+---
+ - name: using dict as variable
+   hosts: all
+   vars_files:
+     var_dict.yml
+   tasks:
+      - name: create a USER
+        debug:
+          msg:
+            - "First Name: {{ users.test1.f_name }}"
+            - "Last Name: {{ users.test1.l_name }}"
+
+      - name: create a USER
+        debug:
+          msg:
+            - "First Name: {{ users.test2.f_name }}"
+            - "Last Name: {{ users.test2.l_name }}"
+

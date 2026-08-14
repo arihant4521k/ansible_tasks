@@ -1,0 +1,6 @@
+---
+ - name: learning the include
+   hosts: all
+   tasks:
+     - name: including tasks
+       include_tasks: task2.yml

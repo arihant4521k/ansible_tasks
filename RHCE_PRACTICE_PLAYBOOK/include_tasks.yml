@@ -1,0 +1,6 @@
+---
+ - name: install webserver
+   hosts: all
+   tasks:
+     - include_tasks: import_tasks.yml
+       when: ansible_facts['os_family']=="RedHat"

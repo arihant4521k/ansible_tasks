@@ -1,0 +1,7 @@
+users:
+  test1:
+    f_name: bob
+    l_name: james
+  test2:
+    f_name: anne
+    l_name: cook
